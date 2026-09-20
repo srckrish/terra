@@ -19,26 +19,7 @@ export const AuthProvider = ({ children }) => {
     initializeSeedData();
 
     // Check if user is logged in
-    let currentUser = auth.getCurrentUser();
-
-    // For testing: if no user is logged in, auto-login with demo sponsor credentials
-    if (!currentUser) {
-      const demoUser = {
-        id: "user-sponsor-demo",
-        name: "Demo Sponsor",
-        email: "sponsor@terra.demo",
-        phone: "+977-9841234567",
-        role: "sponsor",
-        isOrganizer: false,
-        organizationName: "",
-        organizationAbout: "",
-        createdAt: "2026-09-01T10:00:00Z"
-      };
-      // Set the demo user in localStorage to simulate login
-      storage.setData('terra_session', demoUser);
-      currentUser = demoUser;
-    }
-
+    const currentUser = auth.getCurrentUser();
     setUser(currentUser);
     setLoading(false);
   }, []);
