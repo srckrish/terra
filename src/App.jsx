@@ -44,13 +44,13 @@ function App() {
             <Route path="/about" element={<About />} />
 
             {/* Protected routes */}
-            <Route path="/dashboard" element={requireAuth || <Dashboard />} />
-            <Route path="/dashboard/projects/:id" element={requireAuth || <ManageProject />} />
-            <Route path="/dashboard/create-project" element={requireAuth || <CreateProject />} />
-            <Route path="/dashboard/sponsor-payment/:amount" element={requireAuth || <SponsorPayment />} />
-            <Route path="/dashboard/volunteer-ticket/:ticketCode" element={requireAuth || <VolunteerTicket />} />
-            <Route path="/dashboard/verifier" element={requireAuth || <VerifierDashboard />} />
-            <Route path="/report" element={requireAuth || <ReportSite />} />
+            <Route path="/dashboard" element={requireAuth() || <Dashboard />} />
+            <Route path="/dashboard/projects/:id" element={requireAuth() || <ManageProject />} />
+            <Route path="/dashboard/create-project" element={requireAuth() || <CreateProject />} />
+            <Route path="/dashboard/sponsor-payment/:amount" element={requireAuth() || <SponsorPayment />} />
+            <Route path="/dashboard/volunteer-ticket/:ticketCode" element={requireAuth() || <VolunteerTicket />} />
+            <Route path="/dashboard/verifier" element={requireAuth() || <VerifierDashboard />} />
+            <Route path="/report" element={requireAuth() || <ReportSite />} />
 
             {/* Redirect root to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
