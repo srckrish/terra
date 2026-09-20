@@ -1,22 +1,15 @@
 import { useAuth } from '../context/AuthContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as QRCodeReactModule from 'qrcode.react';
 // Try to get the QRCodeReact component from the module
 const QRCodeReact = QRCodeReactModule.default || QRCodeReactModule.QRCodeReact || QRCodeReactModule;
 
 const VolunteerTicket = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const { ticketCode } = useParams();
   const navigate = useNavigate();
   const [showQR, setShowQR] = useState(false);
-
-  // Auto-login with demo credentials for testing if no user is logged in
-  useEffect(() => {
-    if (!user) {
-      login('sponsor@terra.demo', 'demo123');
-    }
-  }, [user, login]);
 
   // In a real implementation, we would look up the volunteer registration by ticket code
   const volunteerRegistration = {
@@ -42,7 +35,7 @@ const VolunteerTicket = () => {
     <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-[#F2F5F4] pt-16">
       <div className="w-full max-w-md space-y-6">
         <div className="border-2 border-[#166F7C] rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#10242A]">
               VOLUNTEER PASS
             </h2>
@@ -54,13 +47,13 @@ const VolunteerTicket = () => {
             </button>
           </div>
 
-          <div className="text-center mb-4">
+          <div className="text-center mb-6">
             <h3 className="text-lg font-medium text-[#10242A]">
               {volunteerRegistration.projectTitle}
             </h3>
           </div>
 
-          <div className="space-y-2 text-[#4B6166]">
+          <div className="space-y-2 text-[#4B6166] mb-6">
             <p>
               <span className="font-medium">{volunteerRegistration.volunteerName}</span>
               <br />
@@ -79,7 +72,7 @@ const VolunteerTicket = () => {
           </div>
 
           {showQR && (
-            <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center justify-center my-6">
               <QRCodeReact
                 value={`TERRA-VOLUNTEER:${volunteerRegistration.ticketCode}`}
                 size={120}
@@ -90,12 +83,12 @@ const VolunteerTicket = () => {
             </div>
           )}
 
-          <div className="text-center text-[4B6166] text-sm">
+          <div className="text-center text-[4B6166] text-sm my-6">
             Show this QR code during check-in.
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center my-6">
           <button
             onClick={handleBack}
             className="px-4 py-2 bg-[#166F7C] text-white rounded-md hover:bg-[#0d5a63] transition-colors"
