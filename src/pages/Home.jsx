@@ -89,7 +89,7 @@ const Home = () => {
               <div className="flex items-center justify-center mb-3">
                 <DollarSign className="h-6 w-6 text-[#B57B08]" />
               </div>
-              <h3 className="text-3xl font-bold text-[#B57B08]">Rs. {stats.funded.toLocaleString()}</h3>
+              <h3 className="text-3xl font-bold text-[#B57B08]">Rs. {stats.funded ? stats.funded.toLocaleString() : 0}</h3>
               <p className="text-sm text-[#4B6166]">Community funded</p>
             </div>
             <div className="text-center">

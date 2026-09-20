@@ -48,7 +48,7 @@ function App() {
             <Route path="/dashboard/projects/:id" element={requireAuth || <ManageProject />} />
             <Route path="/dashboard/create-project" element={requireAuth || <CreateProject />} />
             <Route path="/dashboard/sponsor-payment/:amount" element={requireAuth || <SponsorPayment />} />
-            <Route path="/dashboard/volunteer-ticket/:ticketCode" element={<VolunteerTicket />} />
+            <Route path="/dashboard/volunteer-ticket/:ticketCode" element={requireAuth || <VolunteerTicket />} />
             <Route path="/dashboard/verifier" element={requireAuth || <VerifierDashboard />} />
             <Route path="/report" element={requireAuth || <ReportSite />} />
 

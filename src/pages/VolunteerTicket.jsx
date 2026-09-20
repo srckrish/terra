@@ -1,7 +1,7 @@
 import { useAuth } from '../context/AuthContext';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { QRCodeReact } from 'qrcode.react';
+import * as QRCodeReact from 'qrcode.react';
 
 const VolunteerTicket = () => {
   const { user } = useAuth();
