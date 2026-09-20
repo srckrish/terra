@@ -1,15 +1,22 @@
 import { useAuth } from '../context/AuthContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as QRCodeReactModule from 'qrcode.react';
 // Try to get the QRCodeReact component from the module
 const QRCodeReact = QRCodeReactModule.default || QRCodeReactModule.QRCodeReact || QRCodeReactModule;
 
 const VolunteerTicket = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const { ticketCode } = useParams();
   const navigate = useNavigate();
   const [showQR, setShowQR] = useState(false);
+
+  // Auto-login with demo credentials for testing if no user is logged in
+  useEffect(() => {
+    if (!user) {
+      login('sponsor@terra.demo', 'demo123');
+    }
+  }, [user, login]);
 
   // In a real implementation, we would look up the volunteer registration by ticket code
   const volunteerRegistration = {
